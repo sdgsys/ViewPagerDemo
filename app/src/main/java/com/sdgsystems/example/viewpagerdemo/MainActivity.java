@@ -41,8 +41,13 @@ public class MainActivity extends FragmentActivity implements DemoFragment.OnFra
     }
 
     @Override
-    public void onFragmentChanged(DemoFragment demoFragment) {
-        Log.d("ViewPagerDemo", "Current fragment is now: " + demoFragment.getData().name);
+    public void onFragmentCreated(DemoFragment demoFragment) {
+        Log.d("ViewPagerDemo", "Fragment inflated: " + demoFragment.getData().name);
+    }
+
+    @Override
+    public void onFragmentResumed(DemoFragment demoFragment) {
+        Log.d("ViewPagerDemo", "Fragment resumed: " + demoFragment.getData().name);
     }
 
     private class DemoFragmentAdapter extends FragmentPagerAdapter {

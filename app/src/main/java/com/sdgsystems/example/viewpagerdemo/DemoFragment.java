@@ -1,7 +1,6 @@
 package com.sdgsystems.example.viewpagerdemo;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -60,10 +59,16 @@ public class DemoFragment extends Fragment {
             valueView.setText("" + mData.weight);
 
             if(mListener != null) {
-                mListener.onFragmentChanged(this);
+                mListener.onFragmentCreated(this);
             }
         }
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mListener.onFragmentResumed(this);
     }
 
     @Override
@@ -100,6 +105,7 @@ public class DemoFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(int currentDataPosition);
-        void onFragmentChanged(DemoFragment demoFragment);
+        void onFragmentCreated(DemoFragment demoFragment);
+        void onFragmentResumed(DemoFragment demoFragment);
     }
 }
